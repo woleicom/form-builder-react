@@ -1,0 +1,7 @@
+# 兼容IE10、11
+# not ie < 10
+# > 0.25%
+
+defaults
+not dead
+not op_mini all
