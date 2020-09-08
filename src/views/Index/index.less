@@ -1,0 +1,182 @@
+*, :after, :before {
+  box-sizing: border-box;
+}
+@primary-color: #804fcf;
+@primary-bg-color: #cfbeed;
+.form-design{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  ::-webkit-scrollbar {
+    width: 9px;
+    height: 9px;
+  }
+  ::-webkit-scrollbar-thumb {
+    border-radius: 6px;
+    background: #c2c2c2;
+  }
+  ::-webkit-scrollbar-track {
+    border-radius: 6px;
+    background: rgba(250,250,250,.9);
+  }
+  .lq-header {
+    height: 50px;
+    box-shadow: 0 0 8px 0 rgba(0,0,0,.15);
+  } 
+  .lq-design-ctx {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    .lq-side-left{
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 250px;
+      border-right: solid 1px #e0e0e0;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+    .lq-side-center{
+      position: absolute;
+      top: 0;
+      left: 250px;
+      right: 300px;
+      bottom: 0;
+      overflow: hidden;
+    }
+    .lq-side-right{
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 300px;
+      bottom: 0;
+      border-left: solid 1px #e0e0e0;
+    }
+  }
+}
+.lq-side-left {
+  .cpt-group {
+    .group-title {
+      padding: 8px 12px;
+      font-size: 13px;
+    }
+    .cpt-list {
+      padding: 0 10px 10px;  
+      .widget-label {
+        font-size: 12px;
+        display: block;
+        width: 50%;
+        line-height: 26px;
+        float: left;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        padding: 2px;
+        a{
+          color: #333;
+          text-align: center;
+          display: block;
+          cursor: move;
+          background: #F4F6FC;
+          border: 1px solid #F4F6FC;
+          &:hover {
+            border: 1px dashed @primary-bg-color;
+            color: @primary-color;
+          }
+        }
+      }
+    }
+  }
+}
+.lq-side-center {
+  .widget-content-cor {
+    height: 100%;
+    overflow: auto;
+  }
+  .widget-list {
+    height: auto;
+    min-height: 100%;
+    position: relative;
+    padding: 20px 0;
+    margin: 0;
+    overflow: hidden;
+    .widget-view {
+      padding: 5px 10px 10px;
+      border-left: 5px solid transparent;
+      position: relative;
+      &.widget-select {
+        background-color: @primary-bg-color;
+        border-color: @primary-color;
+      }
+      .lq-label{
+        padding: 5px 0;
+        line-height: 20px;
+        color: #3d464d;
+        font-weight: 600;
+        .label-request {
+          color: #d84636;
+          &::before {
+            content: '*';
+          }
+        }
+      }
+      .lq-desc{
+        font-size: 12px;
+        line-height: 1.4;
+        color: #91A1B7;
+        margin-bottom: 5px;
+        word-break: break-all;
+        word-wrap: break-word;
+        &:empty{
+          margin: 0;
+        }
+      }
+      .lq-widget{
+      }
+      .lq-widget-cover{
+        line-height: normal;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0);
+        padding: 2px 6px;
+        &>i {
+          box-shadow: 0 2px 4px 0 rgba(163,163,163,.5);
+          width: 35px;
+          height: 35px;
+          font-size: 18px;
+          border-radius: 18px;
+          line-height: 35px;
+          text-align: center;
+          z-index: 2;
+          position: absolute;
+          font-style: normal;
+          background: #fff;
+        }
+        .btn-delete {
+          bottom: -17px;
+          right: 20px;
+          color: #d84636;
+          &::before {
+            content: '删';
+          }
+        }
+        .btn-copy {
+          bottom: -17px;
+          right: 65px;
+          color: @primary-color;
+          &::before {
+            content: '复';
+          }
+        }
+      }
+    }
+  }
+}
