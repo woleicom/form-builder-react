@@ -1,7 +1,10 @@
-import React from 'react';
-const index = () => {
+import React from "react";
+
+const LqSideRight = () => {
   return (
-    <div className="lq-side-right"></div>
-  )
+    <div className='lq-side-right'>
+      
+    </div>
+  );
 }
-export default index;
+export default LqSideRight;

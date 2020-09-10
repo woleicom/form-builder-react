@@ -1,70 +1,40 @@
-import React, {useContext,useState} from 'react';
-import {Input} from 'antd';
-import { CopyOutlined, DeleteOutlined } from '@ant-design/icons';
+import React, { useState } from 'react';
 import { ReactSortable } from "react-sortablejs";
-const Index = () => {
-  const [formList, setFormList] = useState([]);
+import LqWidget from './Widget/LqWidget'
+const LqSideCenter = (props) => {
+  const [newWidgetIndex, setNewWidgetIndex] = useState(-1);
+  const actionSetFormList = (a, b, c) => {
+    if (newWidgetIndex> -1) {
+      a.splice(newWidgetIndex, 1, {...a[newWidgetIndex], id: new Date().getTime()});
+      props.setFormList(a,b,c);
+      setNewWidgetIndex(-1);
+    }
+  }
+  const actionSelectWidget = () => {}
   return (
     <div className="lq-side-center">
       <div className='widget-content-cor'>
         <ReactSortable
           className='widget-list'
-          list={formList}
-          setList={setFormList}
+          list={props.formList}
+          setList={actionSetFormList}
           animation="150"
-          ghost-class="form-item-ghost"
-          group="cpt-group"
+          ghostClass="widget-view-ghost"
+          group={{name: 'sortable-group', pull: "clone", put: true}}
+          onAdd={evt => setNewWidgetIndex(evt.newIndex)}
         >
-          {formList.map((v, i)=> {
-            let props = v.props;
+          {props.formList.map((v, i)=> {
             return (
-              <div className='widget-view' key={i}>
-                <div className="lq-label">
-                  <span className='label-title'>{props.label}</span>
-                  <span className='label-request'></span>
-                </div>
-                <div className="lq-desc">{props.desc}</div>
-                <div className="lq-widget">
-                  <Input type="text"/>
-                </div>
-                <div className="lq-widget-cover">
-                  <i className='btn-delete'><DeleteOutlined /></i>
-                  <i className='btn-copy'><CopyOutlined/></i>
-                </div>
-              </div>
+              <LqWidget 
+                key={i}
+                item={v}
+                actionSelectWidget={actionSelectWidget}
+              ></LqWidget>
             )
           })}
         </ReactSortable>
-        {/* <li className='widget-view'>
-          <div className="lq-label">
-            <span className='label-title'>单行文本</span>
-            <span className='label-request'></span>
-          </div>
-          <div className="lq-desc">测试</div>
-          <div className="lq-widget">
-            <Input type="text"/>
-          </div>
-          <div className="lq-widget-cover">
-            <i className='btn-delete'><DeleteOutlined /></i>
-            <i className='btn-copy'><CopyOutlined/></i>
-          </div>
-        </li>
-        <li className='widget-view widget-select'>
-          <div className="lq-label">
-            <span className='label-title'>单行文本</span>
-            <span className='label-request'></span>
-          </div>
-          <div className="lq-desc">测试</div>
-          <div className="lq-widget">
-            <Input type="text"/>
-          </div>
-          <div className="lq-widget-cover">
-            <i className='btn-delete'><DeleteOutlined /></i>
-            <i className='btn-copy'><CopyOutlined/></i>
-          </div>
-        </li> */}
       </div>
     </div>
   )
 }
-export default Index;
+export default LqSideCenter;
