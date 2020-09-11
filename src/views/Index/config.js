@@ -3,11 +3,10 @@ export const widgets = [
   {
     type: 'baseWidget',
     config: {
-      tag: 'input',
-      type: 'text',
-      request: false,
+      tag: 'inputText',
     },
     data: {
+      request: false,
       label: '单行文本',
       desc: ''
     }
@@ -15,11 +14,10 @@ export const widgets = [
   {
     type: 'baseWidget',
     config: {
-      tag: 'input',
-      type: 'textarea',
-      request: false,
+      tag: 'inputTextarea',
     },
     data: {
+      request: false,
       label: '多行文本',
       desc: ''
     }

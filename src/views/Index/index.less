@@ -25,7 +25,20 @@
   }
   .lq-header {
     height: 50px;
+    line-height: 50px;
     box-shadow: 0 0 8px 0 rgba(0,0,0,.15);
+    p {
+      box-sizing: border-box;
+      margin: 0;
+      padding:0 20px;
+      font-weight: bold;
+      font-size: #333;
+      font-size: 16px;
+      &>span {
+        font-size: 14px;
+        color: #ccc;
+      }
+    }
   } 
   .lq-design-ctx {
     position: absolute;
@@ -188,6 +201,9 @@
     .widget-view-ghost {
       border: 1px dashed @primary-color;
       position: relative;
+      &>div {
+        visibility: hidden;
+      }
       &::after {
         content: "";
         position: absolute;
@@ -201,4 +217,26 @@
       }
     }
   }
+}
+.lq-side-right {
+  .widget-setting {
+    padding: 0 10px;
+    height: 100%;
+    overflow-y: auto;
+    margin-bottom: 15px;
+    .box-item {
+      border-bottom: solid 1px #e1e1e1;
+      margin: 15px 0;
+      .item-title {
+        margin-bottom: 10px;
+        font-weight: bold;
+      }
+      .item-content {
+        margin-bottom: 10px;
+      }
+    }
+  }
+}
+.lq-preview-cor {
+  // width: 80vw;
 }

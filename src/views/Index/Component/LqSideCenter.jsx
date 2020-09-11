@@ -5,12 +5,36 @@ const LqSideCenter = (props) => {
   const [newWidgetIndex, setNewWidgetIndex] = useState(-1);
   const actionSetFormList = (a, b, c) => {
     if (newWidgetIndex> -1) {
-      a.splice(newWidgetIndex, 1, {...a[newWidgetIndex], id: new Date().getTime()});
+      props.clearWidgetSelect(a);
+      a.splice(newWidgetIndex, 1, {...a[newWidgetIndex], id: new Date().getTime(), select: true});
       props.setFormList(a,b,c);
+      props.activeWidgetSelect(newWidgetIndex);
       setNewWidgetIndex(-1);
+    } else {
+      props.setFormList(a,b,c);
     }
   }
-  const actionSelectWidget = () => {}
+  const actionSelectWidget = (item) => {
+    let selectItemIndex = props.formList.findIndex(v => v.id === item.id);
+    if (selectItemIndex>-1) {
+      let a = [...props.formList];
+      props.clearWidgetSelect(a);
+      a.splice(selectItemIndex, 1, {...a[selectItemIndex], select: true});
+      props.setFormList(a);
+    }
+  }
+  const actionCopyWidget = (item) => {
+    let copyItemIndex = props.formList.findIndex(v => v.id === item.id);
+    if (copyItemIndex>-1) {
+      let a = [...props.formList];
+      props.clearWidgetSelect(a);
+      a.splice(copyItemIndex, 0, {...a[copyItemIndex], select: true});
+      props.setFormList(a);
+    }
+  }
+  const actionDeleteWidget = (item) => {
+    
+  }
   return (
     <div className="lq-side-center">
       <div className='widget-content-cor'>
@@ -29,6 +53,8 @@ const LqSideCenter = (props) => {
                 key={i}
                 item={v}
                 actionSelectWidget={actionSelectWidget}
+                actionCopyWidget={actionCopyWidget}
+                actionDeleteWidget={actionDeleteWidget}
               ></LqWidget>
             )
           })}
