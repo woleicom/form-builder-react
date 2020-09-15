@@ -58,7 +58,6 @@ const Index = (props) => {
       >
       </LqSideCenter>
       <LqSideRight 
-        item={activeItemIndex > -1 ? formList[activeItemIndex] : false}
         actionWidgetUpdateData={actionWidgetUpdateData}
       ></LqSideRight>
     </div>
