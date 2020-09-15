@@ -30,7 +30,7 @@ const LqPreview = ({visible,onClose}) => {
           <Radio.Button value="pc">电脑端</Radio.Button>
           <Radio.Button value="wap" disabled={false}>移动端</Radio.Button>
         </Radio.Group>
-        <div style={{textAlign:'center',fontSize:'12px',color:'#ccc'}}>只是展示逻辑，至于如何渲染可以自己思考</div>
+        <div style={{textAlign:'center',fontSize:'12px',color:'#ccc'}}>只是展示逻辑，至于如何渲染可以自己思考,包括表单验证等</div>
       </div>}
     >
       {tab === 'pc'?

@@ -16,7 +16,7 @@ const LqSideRight = (props) => {
     <div className='lq-side-right'>
       <Tabs defaultActiveKey="1" centered={true} tabBarGutter={0} size='small'>
         <Tabs.TabPane tab={<div style={{width:'148px',textAlign:'center'}}>字段属性</div>} key="widgetSetting" >
-          {item.id ? <LqWidgetSetting item={item}></LqWidgetSetting> : 
+          {item.id ? <LqWidgetSetting {...props} item={item}></LqWidgetSetting> : 
             <div style={{textAlign:'center',margin: '20px 0'}}>请选择一个字段来设置属性</div>
           }
         </Tabs.TabPane>
