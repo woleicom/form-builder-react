@@ -1,11 +1,8 @@
-import React, {useState,useContext} from 'react';
+import React, {useState} from 'react';
 import {Drawer,Radio, Button} from 'antd';
-import {IndexContext} from '../store';
 import LqRenderWidget from './RenderWidget/LqRenderWidget';
 import { useEffect } from 'react';
-const LqPreview = ({visible,onClose}) => {
-  const indexCtx = useContext(IndexContext);
-  const formList = indexCtx.indexState.formList;
+const LqPreview = ({visible,onClose, formList}) => {
   const [form, setForm] = useState([]);
   useEffect(()=>{
     setForm(formList.map((v)=>{

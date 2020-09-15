@@ -5,7 +5,18 @@ import LqHeader from './Component/LqHeader';
 import LqDesignCtx from './Component/LqDesignCtx';
 import {IndexContext} from './store'
 const initState = {
-  formList : []
+  formList : [{
+    id: 1234567890,
+    type: 'baseWidget',
+    config: {
+      tag: 'inputText',
+    },
+    data: {
+      request: false,
+      label: '单行文本',
+      desc: ''
+    }
+  }]
 }
 const IndexReducer = (state, action)=>{
   switch(action.type) {
@@ -19,12 +30,12 @@ const IndexReducer = (state, action)=>{
   }
 }
 const Index = (props) => {
-  const [indexState, indexDispath] = useReducer(IndexReducer,initState)
+  const [state, dispath] = useReducer(IndexReducer,initState)
   return (
-    <IndexContext.Provider value={{ indexState, indexDispath}}>
+    <IndexContext.Provider value={{dispath}}>
       <div className='form-design'>
-        <LqHeader></LqHeader>
-        <LqDesignCtx ></LqDesignCtx>
+        <LqHeader formList={state.formList}></LqHeader>
+        <LqDesignCtx formList={state.formList}></LqDesignCtx>
       </div>
     </IndexContext.Provider>
   )

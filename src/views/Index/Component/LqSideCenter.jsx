@@ -1,48 +1,67 @@
-import React, { useState } from 'react';
+import React, { useState, useContext} from 'react';
 import { ReactSortable } from "react-sortablejs";
 import LqWidget from './Widget/LqWidget'
+import {IndexContext} from '../store';
 const LqSideCenter = (props) => {
+  const store = useContext(IndexContext);
   const [newWidgetIndex, setNewWidgetIndex] = useState(-1);
   const actionSetFormList = (a, b, c) => {
     if (newWidgetIndex> -1) {
-      props.clearWidgetSelect(a);
-      a.splice(newWidgetIndex, 1, {...a[newWidgetIndex], id: new Date().getTime(), select: true});
-      props.setFormList(a,b,c);
-      props.activeWidgetSelect(newWidgetIndex);
-      setNewWidgetIndex(-1);
-    } else {
-      props.setFormList(a,b,c);
+      a.forEach(v=>v.select = false);
+      a[newWidgetIndex].id = new Date().getTime();
+      a[newWidgetIndex].select = true;
+      store.dispath({
+        type: 'FORM_LIST',
+        payload: {
+          formList: a
+        }
+      });
     }
   }
   const actionSelectWidget = (item) => {
-    let selectItemIndex = props.formList.findIndex(v => v.id === item.id);
+    let a = [...props.formList];
+    let selectItemIndex = a.findIndex(v => v.id === item.id);
     if (selectItemIndex>-1) {
-      let a = [...props.formList];
-      props.clearWidgetSelect(a);
-      a.splice(selectItemIndex, 1, {...a[selectItemIndex], select: true});
-      props.setFormList(a);
+      a.forEach(v=>v.select = false);
+      a[selectItemIndex].select = true;
+      store.dispath({
+        type: 'FORM_LIST',
+        payload: {
+          formList: a
+        }
+      });
     }
   }
   const actionCopyWidget = (item) => {
-    let copyItemIndex = props.formList.findIndex(v => v.id === item.id);
+    let a = [...props.formList];
+    let copyItemIndex = a.findIndex(v => v.id === item.id);
     if (copyItemIndex>-1) {
-      let a = [...props.formList];
-      props.clearWidgetSelect(a);
+      a.forEach(v=>v.select = false);
       a.splice(copyItemIndex, 0, {...a[copyItemIndex], select: true});
-      props.setFormList(a);
+      store.dispath({
+        type: 'FORM_LIST',
+        payload: {
+          formList: a
+        }
+      });
     }
   }
   const actionDeleteWidget = (item) => {
-    let delItemIndex = props.formList.findIndex(v => v.id === item.id);
+    let a = [...props.formList];
+    let delItemIndex = a.findIndex(v => v.id === item.id);
     if (delItemIndex>-1) {
-      let a = [...props.formList];
-      props.clearWidgetSelect(a);
+      a.forEach(v=>v.select = false);
       a.splice(delItemIndex, 1);
       let selItemIndex = (delItemIndex - 1) < 0 ? 0 : (delItemIndex - 1);
       if (a.length > 0) {
-        a.splice(selItemIndex, 1, {...a[selItemIndex], select: true});
+        a[selItemIndex].select = true;
       }
-      props.setFormList(a);
+      store.dispath({
+        type: 'FORM_LIST',
+        payload: {
+          formList: a
+        }
+      });
     }
   }
   return (
