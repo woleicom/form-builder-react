@@ -33,7 +33,17 @@ const LqSideCenter = (props) => {
     }
   }
   const actionDeleteWidget = (item) => {
-    
+    let delItemIndex = props.formList.findIndex(v => v.id === item.id);
+    if (delItemIndex>-1) {
+      let a = [...props.formList];
+      props.clearWidgetSelect(a);
+      a.splice(delItemIndex, 1);
+      let selItemIndex = (delItemIndex - 1) < 0 ? 0 : (delItemIndex - 1);
+      if (a.length > 0) {
+        a.splice(selItemIndex, 1, {...a[selItemIndex], select: true});
+      }
+      props.setFormList(a);
+    }
   }
   return (
     <div className="lq-side-center">
