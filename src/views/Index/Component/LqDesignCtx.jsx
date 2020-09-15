@@ -1,9 +1,19 @@
-import React,{useState} from 'react';
+import React,{useState,useContext} from 'react';
 import LqSideLeft from './LqSideLeft';
 import LqSideCenter from './LqSideCenter';
 import LqSideRight from './LqSideRight';
+import {IndexContext} from '../store';
 const Index = (props) => {
-  const [formList, setFormList] = useState([]);
+  const indexCtx = useContext(IndexContext);
+  const formList = indexCtx.indexState.formList;
+  const setFormList = (data)=>{
+    indexCtx.indexDispath({
+      type: 'FORM_LIST',
+      payload: {
+        formList: data
+      }
+    })
+  };
   const [activeItemIndex, setActiveItemIndex] = useState(-1);
   /**
    * 清除列表选择状态Item

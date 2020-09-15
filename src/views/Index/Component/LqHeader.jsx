@@ -1,6 +1,6 @@
-import React,{ useState } from 'react';
+import React,{ useState, useContext } from 'react';
 import {Button, Drawer} from 'antd';
-import LqPreview from './LqPreview'
+import LqPreview from './LqPreview';
 const LqHeader = (props) => {
   const [previewVisible, setPreviewVisible] = useState(false);
   const [config, setConfig] = useState([]);
