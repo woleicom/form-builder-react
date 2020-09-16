@@ -4,8 +4,7 @@ import LqWidget from './Widget/LqWidget'
 import {IndexContext} from '../store';
 const LqSideCenter = (props) => {
   const store = useContext(IndexContext);
-  console.log(props.formList.length)
-  const [newWidgetIndex, setNewWidgetIndex] = useState(props.formList.length > 0 ? 0 : -1);
+  const [newWidgetIndex, setNewWidgetIndex] = useState(props.formList.findIndex(v=>v.select));
   const actionSetFormList = (a, b, c) => {
     if (newWidgetIndex> -1) {
       a.forEach(v=>v.select = false);

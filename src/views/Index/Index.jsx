@@ -8,6 +8,7 @@ const initState = {
   formList : [{
     id: 1234567890,
     type: 'baseWidget',
+    select: true,
     config: {
       tag: 'inputText',
     },
