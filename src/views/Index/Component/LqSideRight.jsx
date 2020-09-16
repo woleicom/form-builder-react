@@ -4,7 +4,7 @@ import LqWidgetSetting from './Plane/LqWidgetSetting';
 const LqSideRight = (props) => { 
   return (
     <div className='lq-side-right'>
-      <Tabs defaultActiveKey="1" centered={true} tabBarGutter={0} size='small'>
+      <Tabs defaultActiveKey="widgetSetting" centered={true} tabBarGutter={0} size='small'>
         <Tabs.TabPane tab={<div style={{width:'148px',textAlign:'center'}}>字段属性</div>} key="widgetSetting" >
           <LqWidgetSetting {...props} ></LqWidgetSetting>
         </Tabs.TabPane>
