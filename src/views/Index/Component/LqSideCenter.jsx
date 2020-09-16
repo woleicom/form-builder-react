@@ -79,7 +79,7 @@ const LqSideCenter = (props) => {
           {props.formList.map((v, i)=> {
             return (
               <LqWidget 
-                key={i}
+                key={v.id}
                 item={v}
                 actionSelectWidget={actionSelectWidget}
                 actionCopyWidget={actionCopyWidget}
