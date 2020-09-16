@@ -1,7 +1,6 @@
 import React from 'react';
 import LqInput from './LqInput'
 import LqTextarea from './LqTextarea'
-import { CopyOutlined, DeleteOutlined } from '@ant-design/icons';
 const Index = (props) => {
   let item = props.item;
   let config = item.config;

@@ -1,7 +1,8 @@
 # 表单生成器，react版本
-### 仅供学习参考（如有需要可以出vue3版本）
+### 仅供学习参考（[vue版本请参考woleicom/form-builder-vue](https://github.com/woleicom/form-builder-vue)）
 ## 作者： 月下独奏
 
+- 数据存储使用useReducer+useContext
 -------------
 ### 展示
 ![登录页](./note/react0.png)
