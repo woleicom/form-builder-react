@@ -8,8 +8,11 @@ const LqSideCenter = (props) => {
   const actionSetFormList = (a, b, c) => {
     if (newWidgetIndex> -1) {
       a.forEach(v=>v.select = false);
-      a[newWidgetIndex].id = new Date().getTime();
-      a[newWidgetIndex].select = true;
+      if (a[newWidgetIndex].id) { // 从store已经添加的
+        a[newWidgetIndex].select = true;
+      } else { // 交互设置添加的
+        a[newWidgetIndex].id = new Date().getTime();
+      }
       store.dispath({
         type: 'FORM_LIST',
         payload: {
@@ -17,6 +20,7 @@ const LqSideCenter = (props) => {
         }
       });
     }
+    setNewWidgetIndex(-1);
   }
   const actionSelectWidget = (item) => {
     let a = [...props.formList];
@@ -37,7 +41,10 @@ const LqSideCenter = (props) => {
     let copyItemIndex = a.findIndex(v => v.id === item.id);
     if (copyItemIndex>-1) {
       a.forEach(v=>v.select = false);
-      a.splice(copyItemIndex, 0, {...a[copyItemIndex], select: true});
+      let newItem = JSON.parse(JSON.stringify(a[copyItemIndex]));
+      newItem.id = new Date().getTime();
+      newItem.select = true;
+      a.splice(copyItemIndex + 1, 0, newItem);
       store.dispath({
         type: 'FORM_LIST',
         payload: {

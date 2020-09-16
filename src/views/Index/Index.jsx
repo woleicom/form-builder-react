@@ -6,7 +6,7 @@ import LqDesignCtx from './Component/LqDesignCtx';
 import {IndexContext} from './store'
 const initState = {
   formList : [{
-    id: 1234567890,
+    id: 1600224391711,
     type: 'baseWidget',
     select: true,
     config: {

@@ -23,15 +23,17 @@ const Index = (props) => {
       <div className="lq-widget">
         {chooseWidget()}
       </div>
-      <div className="lq-widget-cover" onClick={()=>{props.actionSelectWidget(item)}}>
-        <i className='btn-delete'><DeleteOutlined  onClick={(event)=>{
-          event.stopPropagation();
-          props.actionDeleteWidget(item);
-        }}/></i>
-        <i className='btn-copy'><CopyOutlined  onClick={(event)=>{
+      <div className="lq-widget-cover" onClick={()=>{
+        props.actionSelectWidget(item)
+      }}>
+        <i className='btn-copy' onClick={(event)=>{
           event.stopPropagation();
           props.actionCopyWidget(item);
-        }}/></i>
+        }}><CopyOutlined/></i>
+        <i className='btn-delete' onClick={(event)=>{
+          event.stopPropagation();
+          props.actionDeleteWidget(item);
+        }}><DeleteOutlined/></i>
       </div>
     </div>
   )
