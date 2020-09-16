@@ -76,7 +76,7 @@ const LqSideCenter = (props) => {
           group={{name: 'sortable-group', pull: "clone", put: true}}
           onAdd={evt => setNewWidgetIndex(evt.newIndex)}
         >
-          {props.formList.map((v, i)=> {
+          {props.formList.map((v)=> {
             return (
               <LqWidget 
                 key={v.id}
