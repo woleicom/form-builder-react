@@ -1,16 +1,18 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {Drawer,Radio, Button} from 'antd';
 import LqRenderWidget from './RenderWidget/LqRenderWidget';
 import { useEffect } from 'react';
-const LqPreview = ({visible,onClose, formList}) => {
+import {IndexContext} from '../store';
+const LqPreview = ({visible,onClose}) => {
   const [form, setForm] = useState([]);
+  const store = useContext(IndexContext);
   useEffect(()=>{
-    setForm(formList.map((v)=>{
+    setForm(store.state.formList.map((v)=>{
       let d = JSON.parse(JSON.stringify(v));
       d.data.value = '';
       return d;
     }))
-  },[formList]);
+  },[store.state.formList]);
   
   const [tab,setTab] = useState('pc');
   const actionTabToggle = (e) => {

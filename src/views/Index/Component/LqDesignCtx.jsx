@@ -5,16 +5,9 @@ import LqSideRight from './LqSideRight';
 const Index = (props) => {
   return (
     <div className='lq-design-ctx'>
-      <LqSideLeft 
-        {...props}
-      ></LqSideLeft>
-      <LqSideCenter 
-        {...props}
-      >
-      </LqSideCenter>
-      <LqSideRight 
-        {...props}
-      ></LqSideRight>
+      <LqSideLeft></LqSideLeft>
+      <LqSideCenter></LqSideCenter>
+      <LqSideRight></LqSideRight>
     </div>
   )
 }

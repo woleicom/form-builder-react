@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ReactSortable } from "react-sortablejs";
 import {widgets} from '../config.js'
-const LqSideLeft = (props) => {
+const LqSideLeft = () => {
   const [widgetList, setWidgetList] = useState(widgets);
   return (
     <div className="lq-side-left">

@@ -33,10 +33,10 @@ const IndexReducer = (state, action)=>{
 const Index = (props) => {
   const [state, dispath] = useReducer(IndexReducer,initState)
   return (
-    <IndexContext.Provider value={{dispath}}>
+    <IndexContext.Provider value={{state, dispath}}>
       <div className='form-design'>
-        <LqHeader formList={state.formList}></LqHeader>
-        <LqDesignCtx formList={state.formList}></LqDesignCtx>
+        <LqHeader></LqHeader>
+        <LqDesignCtx></LqDesignCtx>
       </div>
     </IndexContext.Provider>
   )

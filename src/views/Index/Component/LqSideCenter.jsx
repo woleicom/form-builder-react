@@ -4,7 +4,7 @@ import LqWidget from './Widget/LqWidget'
 import {IndexContext} from '../store';
 const LqSideCenter = (props) => {
   const store = useContext(IndexContext);
-  const [newWidgetIndex, setNewWidgetIndex] = useState(props.formList.findIndex(v=>v.select));
+  const [newWidgetIndex, setNewWidgetIndex] = useState(store.state.formList.findIndex(v=>v.select));
   const actionSetFormList = (a, b, c) => {
     if (newWidgetIndex> -1) {
       a.forEach(v=>v.select = false);
@@ -13,17 +13,17 @@ const LqSideCenter = (props) => {
       } else { // 交互设置添加的
         a[newWidgetIndex].id = new Date().getTime();
       }
-      store.dispath({
-        type: 'FORM_LIST',
-        payload: {
-          formList: a
-        }
-      });
     }
+    store.dispath({
+      type: 'FORM_LIST',
+      payload: {
+        formList: a
+      }
+    });
     setNewWidgetIndex(-1);
   }
   const actionSelectWidget = (item) => {
-    let a = [...props.formList];
+    let a = [...store.state.formList];
     let selectItemIndex = a.findIndex(v => v.id === item.id);
     if (selectItemIndex>-1) {
       a.forEach(v=>v.select = false);
@@ -37,7 +37,7 @@ const LqSideCenter = (props) => {
     }
   }
   const actionCopyWidget = (item) => {
-    let a = [...props.formList];
+    let a = [...store.state.formList];
     let copyItemIndex = a.findIndex(v => v.id === item.id);
     if (copyItemIndex>-1) {
       a.forEach(v=>v.select = false);
@@ -54,7 +54,7 @@ const LqSideCenter = (props) => {
     }
   }
   const actionDeleteWidget = (item) => {
-    let a = [...props.formList];
+    let a = [...store.state.formList];
     let delItemIndex = a.findIndex(v => v.id === item.id);
     if (delItemIndex>-1) {
       a.forEach(v=>v.select = false);
@@ -76,14 +76,14 @@ const LqSideCenter = (props) => {
       <div className='widget-content-cor'>
         <ReactSortable
           className='widget-list'
-          list={props.formList}
+          list={store.state.formList}
           setList={actionSetFormList}
           animation="150"
           ghostClass="widget-view-ghost"
           group={{name: 'sortable-group', pull: "clone", put: true}}
           onAdd={evt => setNewWidgetIndex(evt.newIndex)}
         >
-          {props.formList.map((v)=> {
+          {store.state.formList.map((v)=> {
             return (
               <LqWidget 
                 key={v.id}

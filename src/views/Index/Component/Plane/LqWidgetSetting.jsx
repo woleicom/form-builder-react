@@ -1,17 +1,17 @@
 import React, {useState,useEffect,useContext} from 'react';
 import {Input,Checkbox} from 'antd';
 import {IndexContext} from '../../store';
-const LqWidgetSetting = (props) => {
+const LqWidgetSetting = () => {
   const store = useContext(IndexContext);
   const [item, setItem] = useState(null);
   useEffect(()=>{
-    const itemIndex = props.formList.findIndex(v=>v.select);
+    const itemIndex = store.state.formList.findIndex(v=>v.select);
     if (itemIndex > -1) {
-      setItem(props.formList[itemIndex]);
+      setItem(store.state.formList[itemIndex]);
     }
-  },[props.formList]);
+  },[store.state.formList]);
   const updateData = (key, value) => {
-    let a = [...props.formList];
+    let a = [...store.state.formList];
     let updateItemIndex = a.findIndex(v => v.id === item.id);
     if (updateItemIndex>-1) {
       a[updateItemIndex].data[key] = value;
